@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		@keyframes hourglass-spin { 
+			0% { transform: rotate(180deg) scale(0.4); }
+			10% { transform: rotate(360deg) scale(0.4); }
+			50% { transform: rotate(360deg) scale(0.4); }
+			60% { transform: rotate(540deg) scale(0.4); }
+			100% { transform: rotate(540deg) scale(0.4) }
+		}
+		@keyframes hourglass-sand {
+			0% { background-position: 0 25px; }
+			50% { background-position: 0 0; }
+			100% { background-position: 0 -25px; }
+		}
+		@keyframes hourglass-stream {
+			0% { top: 29px; opacity: 0; }
+			10% { opacity: 1; }
+			49.9% { top: 29px; opacity: 1; }
+			50% { top: 2px; opacity: 0;}
+			60% { opacity: 1;}
+			100% { top: 2px; opacity: 1; }
+		}
+
+		/* WebKit */
+
+		@-webkit-keyframes hourglass-spin { 
+			0% { -webkit-transform: rotate(180deg) scale(0.4); }
+			10% { -webkit-transform: rotate(360deg) scale(0.4); }
+			50% { -webkit-transform: rotate(360deg) scale(0.4); }
+			60% { -webkit-transform: rotate(540deg) scale(0.4); }
+			100% { -webkit-transform: rotate(540deg) scale(0.4); }
+		}
+		@-webkit-keyframes hourglass-sand {
+			0% { background-position: 0 25px; }
+			50% { background-position: 0 0; }
+			100% { background-position: 0 -25px; }
+		}
+		@-webkit-keyframes hourglass-stream {
+			0% { top: 29px; opacity: 0; }
+			10% { opacity: 1; }
+			49.9% { top: 29px; opacity: 1; }
+			50% { top: 2px; opacity: 0;}
+			60% { opacity: 1;}
+			100% { top: 2px; opacity: 1; }
+		}
+
+		/* All other browsers */
+
+		.hourglass { 
+			position: relative; 
+			width: 28px;
+			height: 56px;
+			animation: hourglass-spin 8s ease-in-out 0s infinite;
+			-webkit-animation: hourglass-spin 8s ease-in-out 0s infinite;
+		} 
+
+		.hourglass::before, .hourglass::after { 
+			position: absolute; 
+			content: ''; 
+			left: 0;  
+			bottom: 0;
+			width: 24px;
+			height: 25px;
+			background: #595757;
+			border: 2px solid #595757;
+			border-top-left-radius: 15px 25px; 
+			border-top-right-radius: 15px 25px; 
+		}
+
+		.hourglass::before { 
+			top: 0; 
+			transform: rotate(180deg);
+			-webkit-transform: rotate(180deg);
+		}
+
+		.hourglass .hourglass-stand::after, .hourglass .hourglass-stand::before {
+			position: absolute;
+			content: '';
+			z-index: 3;
+			left: -4px;
+			bottom: 0;
+			width: 36px;
+			height: 5px;
+			background: #595757;
+		}
+
+		.hourglass .hourglass-stand::before {
+			top: 0;
+		}
+
+		.hourglass .hourglass-sand::before, .hourglass .hourglass-sand::after { 
+			position: absolute;
+			content: ''; 
+			z-index: 2; 
+			left: 2px;
+			bottom: 2px;
+			width: 24px;
+			height: 25px;
+			background: linear-gradient(#f08200 0%,#f08200 50%,#fff 50%,#ddd 100%);
+			background-size: 30px 50px;
+			border-top-left-radius: 13px 23px; 
+			border-top-right-radius: 13px 23px;
+			animation: hourglass-sand 8s ease-in-out 0s infinite;  
+			-webkit-animation: hourglass-sand 8s ease-in-out 0s infinite; 
+		}
+
+		.hourglass .hourglass-sand::before { 
+			top: 2px; 
+			transform: rotate(180deg); 
+			animation-delay: -4s; 
+			-webkit-transform: rotate(180deg); 
+			-webkit-animation-delay: -4s; 
+		}
+
+		.hourglass .hourglass-stream { 
+			position: absolute;  
+			z-index: 2;
+			left: 13px;
+			width: 2px;
+			height: 25px;
+			opacity: 0;
+			background: #f08200;
+			animation: hourglass-stream 8s linear 0.6s infinite;
+			-webkit-animation: hourglass-stream 8s linear 0.6s infinite;
+		}
+	</style>
+</head>
+<body>
+	<div class="hourglass">
+	<div class="hourglass-stand"></div>
+	<div class="hourglass-sand"></div>
+	<div class="hourglass-stream"></div>
+</div>
+</body>
+</html>
